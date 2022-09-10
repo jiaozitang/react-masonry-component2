@@ -1,0 +1,14 @@
+.MasonryFlexWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: stretch;
+
+  .column {
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "flex-start";
+    align-content: "stretch";
+    flex: 1;
+  }
+}
