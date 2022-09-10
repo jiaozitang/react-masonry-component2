@@ -11,16 +11,24 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir": "es",
+    "declaration": true,
+    "declarationDir": "es"
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+      "src/**/stories.*",
+      "src/**/.spec.*",
+      "src/**/.mdx"
   ]
 }

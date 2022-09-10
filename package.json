@@ -1,12 +1,12 @@
 {
-  "name": "react-masonry-component",
-  "version": "0.1.0",
+  "name": "react-masonry-component2",
+  "version": "1.0.2",
   "author": {
     "name": "jiaozi",
     "email": "2321023924@qq.com"
   },
   "description": "react 的瀑布流组件库，支持 columns 布局、弹性布局、绝对定位布局三种方法实现",
-  "homepage": "https://github.com/cedricdelpoux/react-responsive-masonry#readme",
+  "homepage": "https://github.com/jiaozitang/react-masonry-component2#readme",
   "keywords": [
     "react",
     "masonry",
@@ -17,34 +17,21 @@
     "column"
   ],
   "license": "MIT",
-  "main": "lib/index.js",
   "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "es"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cedricdelpoux/react-responsive-masonry.git"
-  },
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.58",
-    "@types/react": "^18.0.18",
-    "@types/react-dom": "^18.0.6",
-    "classnames": "^2.3.1",
-    "lodash-es": "^4.17.21",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-responsive-masonry": "^2.1.5",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.8.2",
-    "web-vitals": "^2.1.4"
+    "url": "git+https://github.com/jiaozitang/react-masonry-component2.git"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "rimraf es && rollup -c",
+    "start:webpack": "react-scripts start",
+    "build:webpack": "react-scripts build",
+    "test:webpack": "react-scripts test",
+    "eject:webpack": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "prepare": "husky install",
@@ -79,8 +66,21 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "lodash-es": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.8.2",
+    "web-vitals": "^2.1.4"
+  },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.1.0",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "@rollup/plugin-strip": "^2.1.0",
+    "@rollup/plugin-typescript": "^8.5.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
@@ -91,25 +91,38 @@
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
     "@types/lodash-es": "^4.17.6",
+    "@types/node": "^16.11.58",
+    "@types/react": "^18.0.18",
+    "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "babel-plugin-named-exports-order": "^0.0.2",
     "commitlint": "^17.1.2",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^8.23.0",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "node-sass": "^7.0.3",
+    "postcss-url": "^10.1.3",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
+    "rollup": "^2.79.0",
+    "rollup-plugin-node-externals": "^5.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-sass": "^1.2.13",
     "sass": "^1.54.9",
     "stylelint": "^14.11.0",
-    "webpack": "^5.74.0",
-     "cz-conventional-changelog": "3.3.0"
+    "webpack": "^5.74.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
- }
+  }
 }

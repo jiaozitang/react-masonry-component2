@@ -1,12 +1,14 @@
+import "./index.scss";
+
 import classNames from "classnames";
 import React, { useRef } from "react";
 
+import { MasonryProps } from "..";
 import { DEFAULT_GUTTER } from "../const";
-import styles from "./index.module.scss";
 import { getListAndHeight } from "./utils";
 
 const MasonryAbsolute: React.FC<
-  IProps & {
+  MasonryProps & {
     columnCount: number;
   }
 > = (props) => {
@@ -19,8 +21,6 @@ const MasonryAbsolute: React.FC<
   } = props;
   const ref = useRef(null);
 
-  console.log("您已开启按高度排序，请为每个子元素传 height 参数");
-
   const { list, height } = getListAndHeight({
     children,
     columnCount,
@@ -29,7 +29,7 @@ const MasonryAbsolute: React.FC<
   });
   return (
     <div
-      className={classNames([styles.MasonryAbsoluteWrap, className])}
+      className={classNames(["masonry-absolute-wrap ", className])}
       style={{
         gap: gutter,
         height,
@@ -40,11 +40,7 @@ const MasonryAbsolute: React.FC<
       {list.map((i, index) => {
         console.log(i);
         return (
-          <div
-            className={styles.MasonryAbsoluteItem}
-            key={index}
-            style={i.style}
-          >
+          <div className={"masonry-absolute-item"} key={index} style={i.style}>
             {i.node}
           </div>
         );

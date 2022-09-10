@@ -5,5 +5,11 @@
   ],
    "src/**/*.scss": [
     "prettier --write"
+  ],
+  "src/**/*.mdx": [
+    "prettier --write"
+  ],
+ "src/**/*.md": [
+    "prettier --write"
   ]
 }
