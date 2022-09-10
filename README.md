@@ -1,46 +1,123 @@
-# Getting Started with Create React App
+# 瀑布流组件
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. 支持 2 种排列方向
 
-## Available Scripts
+- 支持纵向排列
+- 支持横向排列（默认）
 
-In the project directory, you can run:
+2. 支持按高度排序
+3. 支持根据屏幕宽度自适应列数
 
-### `npm start`
+在线Demo地址：<TODO><https://jiaozitang.github.io/react-masonry-component>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 纵向布局
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```js
+import { Masonry } from 'react-masonry-component2'
 
-### `npm test`
+export const MyComponent = (args) => {
+  return (
+    <Masonry
+      direction='column'
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+    </Masonry>
+  )
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7336aaf68f594065a262ca832f5fdba3~tplv-k3u1fbpfcp-watermark.image?)
 
-### `npm run build`
+## 横向布局
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+import { Masonry, MasonryItem } from 'react-masonry-component2'
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export const MyComponent = (args) => {
+  return (
+    <Masonry
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+        <div></div>
+        <div></div>
+        <div></div>
+    </Masonry>
+  )
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3e944abbc864873bdf76755b1306756~tplv-k3u1fbpfcp-watermark.image?)
 
-### `npm run eject`
+## 横向布局+高度排序
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```tsx
+import {Masonry, MasonryItem} from 'react-masonry-component2'
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export const MyComponent = (args) => {
+  return (
+    <Masonry
+      sortWithHeight
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      <MasonryItem height={200}>
+        <div></div>
+      </MasonryItem>
+      <MasonryItem height={300}>
+        <div></div>
+      </MasonryItem>
+      <MasonryItem height={400}>
+        <div></div>
+      </MasonryItem>
+    </Masonry>
+  )
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0995a2a67ac24001b57e434300a7ecd0~tplv-k3u1fbpfcp-watermark.image?)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 横向布局+高度排序+绝对定位
 
-## Learn More
+```tsx
+import {Masonry, MasonryAbsoluteItem} from 'react-masonry-component2'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export const MyComponent = (args) => {
+  return (
+    <Masonry
+      useAbsolute
+      sortWithHeight
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      <MasonryAbsoluteItem width={100} height={200}>
+        <div></div>
+      </MasonryAbsoluteItem>
+      <MasonryAbsoluteItem width={100} height={300}>
+        <div></div>
+      </MasonryAbsoluteItem>
+      <MasonryAbsoluteItem width={100} height={400}>
+        <div></div>
+      </MasonryAbsoluteItem>
+    </Masonry>
+  )
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cca86944185842fba3f976332e481d13~tplv-k3u1fbpfcp-watermark.image?)

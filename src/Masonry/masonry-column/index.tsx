@@ -1,10 +1,13 @@
+import "./index.scss";
+
 import classNames from "classnames";
+import React from "react";
 
 import { DEFAULT_GUTTER } from "../const";
-import styles from "./index.module.scss";
+import { MasonryProps } from "../masonry";
 
 const MasonryColumn: React.FC<
-  IProps & {
+  MasonryProps & {
     columnCount: number;
   }
 > = (props) => {
@@ -18,7 +21,7 @@ const MasonryColumn: React.FC<
 
   return (
     <div
-      className={classNames([styles.MasonryColumnWrap, className])}
+      className={classNames(["masonry-column-wrap", className])}
       style={{
         ...style,
         columnGap: gutter,

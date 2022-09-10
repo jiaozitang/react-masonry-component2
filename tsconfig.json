@@ -18,9 +18,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir": "es",
+    "declaration": true,
+    "declarationDir": "es"
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+      "src/**/stories.*",
+      "src/**/.spec.*",
+      "src/**/.mdx"
   ]
 }

@@ -1,10 +1,10 @@
-.MasonryFlexWrap {
+.masonry-flex-wrap {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: stretch;
 
-  .column {
+  &-column {
     display: "flex";
     flex-direction: "column";
     justify-content: "flex-start";

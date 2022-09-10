@@ -1,0 +1,218 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import Masonry from "./";
+import { MasonryAbsoluteItem, MasonryItem } from "./masonry-item";
+import { useState } from "react";
+import MockData from "./mock.json";
+
+<Meta title="布局/Masonry 瀑布流" component={Masonry} />
+
+# 瀑布流组件
+
+1. 支持 2 种排列方向
+
+- 支持纵向排列
+- 支持横向排列（默认）
+
+2. 支持按高度排序
+3. 支持根据屏幕宽度自适应列数
+
+export const Basic = (args) => <Masonry {...args} />;
+
+## 纵向布局
+
+```tsx
+import { Masonry } from "react-masonry-component2";
+
+export const MyComponent = (args) => {
+  return (
+    <Masonry
+      direction="column"
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+    </Masonry>
+  );
+};
+```
+
+<Canvas>
+  <Story name="纵向布局">
+    <Basic
+      direction="column"
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      {MockData.list.map((i, index) => {
+        return (
+          <div key={index}>
+            <p>{index + 1}</p>
+            <img src={i.img} style={{ maxWidth: "100%" }} />
+          </div>
+        );
+      })}
+    </Basic>
+  </Story>
+</Canvas>
+
+## 横向布局
+
+```tsx
+import { Masonry } from "react-masonry-component2";
+
+export const MyComponent = (args) => {
+  return (
+    <Masonry
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+    </Masonry>
+  );
+};
+```
+
+<Canvas>
+  <Story name="横向布局">
+    <Basic
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      {MockData.list.map((i, index) => {
+        return (
+          <div key={index}>
+            <p>{index + 1}</p>
+            <img src={i.img} style={{ maxWidth: "100%" }} />
+          </div>
+        );
+      })}
+    </Basic>
+  </Story>
+</Canvas>
+
+## 横向布局+高度排序
+
+```tsx
+import { Masonry, MasonryItem } from "react-masonry-component2";
+
+export const MyComponent = (args) => {
+  return (
+    <Masonry
+      sortWithHeight
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      <MasonryItem height={200}>
+        <div></div>
+      </MasonryItem>
+      <MasonryItem height={300}>
+        <div></div>
+      </MasonryItem>
+      <MasonryItem height={400}>
+        <div></div>
+      </MasonryItem>
+    </Masonry>
+  );
+};
+```
+
+<Canvas>
+  <Story name="横向布局+高度排序">
+    <Basic
+      sortWithHeight
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      {MockData.list.map((i, index) => {
+        return (
+          <MasonryItem key={index} height={i.height}>
+            <div>
+              <p>{index + 1}</p>
+              <img src={i.img} style={{ maxWidth: "100%" }} />
+            </div>
+          </MasonryItem>
+        );
+      })}
+    </Basic>
+  </Story>
+</Canvas>
+
+## 横向布局+高度排序+绝对定位
+
+```tsx
+import { Masonry, MasonryAbsoluteItem } from "react-masonry-component2";
+
+export const MyComponent = (args) => {
+  return (
+    <Masonry
+      useAbsolute
+      sortWithHeight
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+    >
+      <MasonryAbsoluteItem width={100} height={200}>
+        <div></div>
+      </MasonryAbsoluteItem>
+      <MasonryAbsoluteItem width={100} height={300}>
+        <div></div>
+      </MasonryAbsoluteItem>
+      <MasonryAbsoluteItem width={100} height={400}>
+        <div></div>
+      </MasonryAbsoluteItem>
+    </Masonry>
+  );
+};
+```
+
+<Canvas>
+  <Story name="横向布局+高度排序+绝对定位">
+    <Basic
+      useAbsolute
+      sortWithHeight
+      columnsCountBreakPoints={{
+        1400: 5,
+        1000: 4,
+        700: 3,
+      }}
+      style={{
+        margin: "40px",
+      }}
+    >
+      {MockData.list.map((i, index) => {
+        return (
+          <MasonryAbsoluteItem key={index} width={i.width} height={i.height}>
+            <div>
+              <p>{index + 1}</p>
+              <img src={i.img} style={{ maxWidth: "100%" }} />
+            </div>
+          </MasonryAbsoluteItem>
+        );
+      })}
+    </Basic>
+  </Story>
+</Canvas>

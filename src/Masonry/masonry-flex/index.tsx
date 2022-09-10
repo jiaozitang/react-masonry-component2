@@ -1,12 +1,14 @@
+import "./index.scss";
+
 import classNames from "classnames";
 import React from "react";
 
 import { DEFAULT_GUTTER } from "../const";
-import styles from "./index.module.scss";
+import { MasonryProps } from "../masonry";
 import { getColumns, getColumnsSortWithHeight } from "./utils";
 
 const MasonryFlex: React.FC<
-  IProps & {
+  MasonryProps & {
     columnCount: number;
   }
 > = (props) => {
@@ -19,13 +21,9 @@ const MasonryFlex: React.FC<
     sortWithHeight,
   } = props;
 
-  if (sortWithHeight) {
-    console.log("您已开启按高度排序，请为每个子元素传 height 参数");
-  }
-
   return (
     <div
-      className={classNames([styles.MasonryFlexWrap, className])}
+      className={classNames(["masonry-flex-wrap", className])}
       style={{
         gap: gutter,
         ...style,
@@ -36,7 +34,7 @@ const MasonryFlex: React.FC<
         : getColumns(children, columnCount)
       ).map((column, i) => (
         <div
-          className={styles.column}
+          className="masonry-flex-wrap-column"
           key={i}
           style={{
             gap: gutter,
