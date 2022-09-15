@@ -1,4 +1,5 @@
-# 瀑布流组件
+
+# React 瀑布流组件
 
 1. 支持 2 种排列方向
 
@@ -8,9 +9,15 @@
 2. 支持按高度排序
 3. 支持根据屏幕宽度自适应列数
 
-在线Demo地址：<TODO><https://jiaozitang.github.io/react-masonry-component>
+## 安装
+
+```
+npm i react-masonry-component2
+```
 
 ## 纵向布局
+
+direction='column'表示纵向布局。
 
 ```js
 import { Masonry } from 'react-masonry-component2'
@@ -37,6 +44,8 @@ export const MyComponent = (args) => {
 
 ## 横向布局
 
+direction='column'表示横向布局，默认横向布局。
+
 ```js
 import { Masonry, MasonryItem } from 'react-masonry-component2'
 
@@ -60,6 +69,8 @@ export const MyComponent = (args) => {
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3e944abbc864873bdf76755b1306756~tplv-k3u1fbpfcp-watermark.image?)
 
 ## 横向布局+高度排序
+
+sortWithHeight 表示按照高度排序，选每列高度最小的添加元素。
 
 ```tsx
 import {Masonry, MasonryItem} from 'react-masonry-component2'
@@ -91,6 +102,8 @@ export const MyComponent = (args) => {
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0995a2a67ac24001b57e434300a7ecd0~tplv-k3u1fbpfcp-watermark.image?)
 
 ## 横向布局+高度排序+绝对定位
+
+useAbsolute 表示使用绝对定位实现瀑布流。
 
 ```tsx
 import {Masonry, MasonryAbsoluteItem} from 'react-masonry-component2'
