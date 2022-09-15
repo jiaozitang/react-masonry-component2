@@ -1,6 +1,6 @@
 {
   "name": "react-masonry-component2",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": {
     "name": "jiaozi",
     "email": "2321023924@qq.com"
@@ -36,7 +36,8 @@
     "build-storybook": "build-storybook -s public",
     "prepare": "husky install",
     "eslint": "eslint src --fix",
-    "prettier": "prettier src --write"
+    "prettier": "prettier src --write",
+    "publish": "yarn build && npm publish"
   },
   "eslintConfig": {
     "extends": [
@@ -124,5 +125,10 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/jiaozitang/react-masonry-component2/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "react-masonry-component2@1.0.2"
 }

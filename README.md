@@ -9,6 +9,7 @@
 2. 支持按高度排序
 3. 支持根据屏幕宽度自适应列数
 
+**[组件文档地址](https://632339a3ed0b247d36b0fa3c-njrsmzdcdj.chromatic.com/?path=/story/%E4%BB%8B%E7%BB%8D--page)**
 ## 安装
 
 ```
