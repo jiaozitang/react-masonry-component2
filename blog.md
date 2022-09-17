@@ -1,5 +1,3 @@
-# 从 0 到 1 开发一个 React 组件库
-
 ## 背景
 
 前端技术的不断发展过程中，组件化、模块化已成为主流。
@@ -8,7 +6,8 @@
 
 那么怎么去开发一个组件库呢？本文将和你一起从零开发一个 React 组件库。
 
-本文项目源码：<https://github.com/jiaozitang/react-masonry-component2>
+- 本文项目源码：<https://github.com/jiaozitang/react-masonry-component2>
+- 本文组件库 npm 包地址：<https://www.npmjs.com/package/react-masonry-component2>
 
 ## 一、搭建项目
 
@@ -517,7 +516,8 @@ link 的本质就是软链接，这样可以让我们快速使用本地正在开
 
 本文是我个人在实际开发中沉淀 React 组件库的一次小结，不是一个完美的组件库，但是也足够日常开发使用。感兴趣的朋友可以跟着一起敲一遍，发布一个属于自己的组件库。
 
-本文项目源码：<https://github.com/jiaozitang/react-masonry-component2>
+- 本文项目源码：<https://github.com/jiaozitang/react-masonry-component2>
+- 本文组件库 npm 包地址：<https://www.npmjs.com/package/react-masonry-component2>
 
 ## 参考资料
 
