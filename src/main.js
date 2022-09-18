@@ -5,6 +5,6 @@ import { sum } from "lodash-es";
 
 
 export default function () {
-    console.log(foo);
+    console.log(foo.text);
     console.log(sum([1, 2]));
 }

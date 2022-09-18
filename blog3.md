@@ -12,6 +12,10 @@
 
 `rollup` 相比 `webpack`，它更少的功能和更简单的 api，是我们在打包类库时选择它的原因。
 
+## 支持打包的文件格式
+
+rollup 支持的打包文件的格式有 amd, cjs, es\esm, iife, umd。其中，amd 为 AMD 标准，cjs 为 CommonJS 标准，esm\es 为 ES 模块标准，iife 为立即调用函数， umd 同时支持 amd、cjs 和 iife。
+
 ## 快速开始
 
 ### 安装
@@ -99,7 +103,7 @@ export default function () {
 
 有 2 种方法引入外部资源：
 
-- 添加插件 `@rollup/plugin-node-resolve` 将我们编写的源码与依赖的第三方库进行合并；添加插件 `@rollup/plugin-commonjs` 支持使用 CommonJS 的第三方库。
+- 添加插件 `@rollup/plugin-node-resolve` 将我们编写的源码与依赖的第三方库进行合并；
 - 配置 external 属性，告诉 rollup.js 哪些是外部的类库。
 
 #### resolve 插件
@@ -208,34 +212,6 @@ module.exports = main;
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8d7233456d124f52ae678d5a58723d69~tplv-k3u1fbpfcp-watermark.image?)
 
-#### commonJs 插件
-
-rollup.js 编译源码中的模块引用默认只支持 ES6+的模块方式 import/export。然而大量的 npm 模块是基于 CommonJS 模块方式，这就导致了大量 npm 模块不能直接编译使用。
-
-需要添加 @rollup/plugin-commonjs 插件来支持 npm 模块和 CommonJS 模块方。
-
-安装：
-
-```chain
-yarn add @rollup/plugin-commonjs -D
-```
-
-更新 rollup.config.js：
-
-```js
-import commonjs from "@rollup/plugin-commonjs";
-
-export default {
-  input: "src/main.js",
-  output: {
-    file: "bundle.js",
-    format: "cjs",
-  },
-  plugins: [commonjs()],
-  external: ["lodash-es"],
-};
-```
-
 #### external 属性
 
 有些场景下，虽然我们使用了 resolve 插件，但可能我们仍然想要某些库保持外部引用状态，这时我们就需要使用 external 属性，来告诉 rollup.js 哪些是外部的类库。
@@ -251,10 +227,51 @@ export default {
   output: {
     file: "bundle.js",
     format: "cjs",
+    name: "test",
+  },
+  plugins: [nodeResolve(), commonjs()],
+  external: ["react"],
+};
+```
+
+### 引入 CommonJs 模块
+
+#### CommonJs 插件
+
+rollup.js 编译源码中的模块引用默认只支持 ES6+的模块方式 import/export。然而大量的 npm 模块是基于 CommonJS 模块方式，这就导致了大量 npm 模块不能直接编译使用。
+
+需要添加 @rollup/plugin-commonjs 插件来支持基于 CommonJS 模块方式 npm 包。
+
+安装：
+
+```chain
+yarn add @rollup/plugin-commonjs -D
+```
+
+更新 rollup.config.js：
+
+```js
+import commonjs from "@rollup/plugin-commonjs";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+
+export default {
+  input: "src/main.js",
+  output: {
+    file: "bundle.js",
+    format: "cjs",
     name: 'test'
   },
   plugins: [nodeResolve(), commonjs()],
   external: ["react"],
+};
+
+```
+
+更新 src/foo.js：
+
+```js
+module.exports = {
+  text: "hello world!",
 };
 ```
 

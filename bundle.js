@@ -1,6 +1,8 @@
 'use strict';
 
-var foo = "hello world!";
+var foo = {
+  text: "hello world!",
+};
 
 /**
  * This method returns the first argument it receives.
@@ -69,7 +71,7 @@ function sum(array) {
 
 
 function main () {
-    console.log(foo);
+    console.log(foo.text);
     console.log(sum([1, 2]));
 }
 

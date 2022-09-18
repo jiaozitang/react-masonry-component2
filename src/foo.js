@@ -1,1 +1,3 @@
-export default "hello world!";
+module.exports = {
+  text: "hello world!",
+};
