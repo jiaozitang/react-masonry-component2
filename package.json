@@ -27,7 +27,7 @@
     "url": "git+https://github.com/jiaozitang/react-masonry-component2.git"
   },
   "scripts": {
-    "build": "rimraf es && rollup -c",
+    "build": "rimraf dist && rollup -c",
     "start:webpack": "react-scripts start",
     "build:webpack": "react-scripts build",
     "test:webpack": "react-scripts test",

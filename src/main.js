@@ -1,7 +1,7 @@
-// src/main.js
-import foo from "./foo.ts";
-import './foo.scss'
+import foo from "./foo";
+import hello from "./hello";
 
-export default function () {
-    console.log(foo.text);
+export {
+    foo,
+    hello
 }

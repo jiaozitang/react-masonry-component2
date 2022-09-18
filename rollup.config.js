@@ -1,25 +1,49 @@
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import autoprefixer from "autoprefixer";
-import cssnano from "cssnano";
-import postcss from "rollup-plugin-postcss";
 import typescript from "@rollup/plugin-typescript";
+import path from 'path'
+import postcssUrl from 'postcss-url'
+import externals from 'rollup-plugin-node-externals'
+import postcss from "rollup-plugin-postcss";
+
+import {walkEntryFiles} from './scripts/buildUtil'
 
 export default {
-  input: "src/main.js",
+  input: [...walkEntryFiles('src')],
   output: {
-    file: "bundle.js",
-    format: "umd",
-    name: "test",
+    dir: path.dirname('dist/bundle.js'),
+    format: 'es',
   },
   plugins: [
+    externals({
+      devDeps: false,
+      include: [/^rc-/],
+      exclude: [/\.less$/],
+    }),
     nodeResolve(),
     commonjs(),
-    postcss({
-      plugins: [autoprefixer(), cssnano()],
-      extract: "css/index.css",
+    typescript({
+      declaration: true,
+      declarationDir: 'dist'
     }),
-    typescript()
+    postcss({
+      modules: false,
+      use: [
+        'sass',
+        'stylus',
+        [
+          'less',
+          {
+            javascriptEnabled: true,
+          },
+        ],
+      ],
+      plugins: [
+        postcssUrl({
+          url: 'inline',
+        }),
+      ],
+    }),
   ],
   external: ["react"],
 };

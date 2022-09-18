@@ -476,10 +476,16 @@ export default {
 更新 `rollup.config.js`：
 
 ```js
-postcss({
-  plugins: [autoprefixer(), cssnano()],
-  extract: "css/index.css",
-});
+export default [
+  {
+    plugins: [
+        postcss({
+        plugins: [autoprefixer(), cssnano()],
+        extract: "css/index.css",
+        })
+    ]
+  }
+];
 ```
 
 效果如图：
@@ -492,7 +498,7 @@ postcss({
 修改 `src/foo.js` -> `src/foo.ts`：
 
 ```ts
-export default  {
+export default {
   text: "hello world!",
 };
 ```
@@ -519,11 +525,11 @@ yarn add @rollup/plugin-typescript -D
 
 ```js
 import typescript from "@rollup/plugin-typescript";
-{
-  plugins: [
-      typescript()
-  ]
-}
+export default [
+  {
+    plugins: [typescript()];
+  }
+];
 ```
 
 成功支持 Ts 文件导出：
@@ -532,7 +538,46 @@ import typescript from "@rollup/plugin-typescript";
 
 #### 6.2 导出类型声明文件
 
+更新 rollup.config.js：
 
+```js
+import typescript from "@rollup/plugin-typescript";
+export default [
+  {
+    plugins: [
+        typescript({
+            declaration: true,
+            declarationDir: "dist",
+        })
+    ];
+  }
+];
+```
+
+成功支持类型声明文件导出：
+
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2a441501a9d54033a73529d9928a90a2~tplv-k3u1fbpfcp-watermark.image?)
+
+## @rollup/plugin-strip
+
+## 五、一个真实的组件库的 rollup 打包配置
+
+项目地址：https://github.com/jiaozitang/react-masonry-component2
+
+### 安装
+
+```chain
+npm i rollup -g
+
+yarn add @rollup/plugin-commonjs @rollup/plugin-node-resolve @rollup/plugin-strip @rollup/plugin-typescript rollup-plugin-postcss postcss-url -D
+```
+
+### 配置
+
+项目根目录下新增 `rollup.config.js`：
+
+```js
+```
 
 ## 参考资料
 
