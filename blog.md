@@ -41,6 +41,8 @@ npx create-react-app my-react-component --template typescript
 
 #### 2.2 Storybook
 
+Storybook 教程：<https://storybook.js.org/>。
+
 为 React 项目添加 Storybook 能力。
 
 ```chain
@@ -270,12 +272,98 @@ npx --no-install commitlint --edit $1
 
 每个组件包含 4 个基础文件：
 
-- `[component-name].stories.mdx`
 - `[component-name].tsx`
 - `[component-name].scss`
 - `index.ts`
+- `[component-name].stories.mdx`
 
-详细的组件代码地址：<https://github.com/jiaozitang/react-masonry-component2/tree/dev/src/Masonry>
+下文将举例瀑布流组件源码：
+
+完整的瀑布流组件代码地址：<https://github.com/jiaozitang/react-masonry-component2/tree/dev/src/Masonry>。
+
+#### 4.1 `masonry.tsx`
+
+React 组件。
+
+```tsx
+import React from "react";
+
+import { DEFAULT_COLUMNS_COUNT_POINTS, MasonryDirection } from "./const";
+import { useColumnCount } from "./hooks";
+import MasonryAbsolute from "./masonry-absolute";
+import MasonryColumn from "./masonry-column";
+import MasonryFlex from "./masonry-flex";
+
+export interface MasonryProps extends React.HTMLAttributes<HTMLElement> {
+  /** 排列方向 */
+  direction?: "row" | "column";
+  sortWithHeight?: boolean; // 是否需要按高度排序
+  useAbsolute?: boolean; // 是否开启绝对定位方法实现瀑布流，该模式默认开始按高度排序
+  columnsCountBreakPoints?: {
+    // 自适应的配置
+    [props: number]: number;
+  };
+  children?: React.ReactNode;
+  className?: string;
+  style?: Record<string, any>;
+  gutter?: number;
+}
+
+const Masonry: React.FC<MasonryProps> = (props) => {
+  const {
+    direction = MasonryDirection.row,
+    columnsCountBreakPoints = DEFAULT_COLUMNS_COUNT_POINTS,
+    useAbsolute,
+  } = props;
+  const columnCount = useColumnCount(columnsCountBreakPoints);
+
+  if (useAbsolute) {
+    return <MasonryAbsolute {...props} columnCount={columnCount} />;
+  }
+  if (direction === MasonryDirection.column) {
+    return <MasonryColumn {...props} columnCount={columnCount} />;
+  }
+  if (direction === MasonryDirection.row) {
+    return <MasonryFlex {...props} columnCount={columnCount} />;
+  }
+  return <div></div>;
+};
+
+export default Masonry;
+```
+
+#### 4.2 `masonry.scss`
+
+组件的样式文件。
+
+#### 4.3 `index.ts`
+
+组件需要导出的内容。
+
+```ts
+import Masonry from "./masonry";
+import { MasonryAbsoluteItem, MasonryItem } from "./masonry-item";
+
+export { MasonryAbsoluteItem, MasonryItem };
+export type { MasonryProps } from "./masonry";
+export default Masonry;
+```
+
+#### 4.4 `masonry.stories.mdx`
+
+组件案例，Storybook 特定语法。
+
+Storybook 教程：<https://storybook.js.org/>。
+
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a03cc90d2b9e4cf483770b7f1b29a6b4~tplv-k3u1fbpfcp-watermark.image?)
+
+组件案例在 `yarn storybook` 后可以在线查看效果：
+
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7fc2fc6877fc489cb2873534bffe9a72~tplv-k3u1fbpfcp-watermark.image?)
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/509c09d9205646568fff49a5eea8611f~tplv-k3u1fbpfcp-watermark.image?)
+
+也可以通过 Storybook 官方提供的工具发布成一个在线的文档地址，详细的发布教程在第三章节将会介绍。
 
 ## 二、打包组件库
 
