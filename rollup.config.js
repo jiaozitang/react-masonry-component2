@@ -16,6 +16,7 @@ export default {
     commonjs(),
     postcss({
       plugins: [autoprefixer(), cssnano()],
+      extract: "css/index.css",
     }),
   ],
   external: ["react"],

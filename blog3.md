@@ -281,6 +281,27 @@ rollup-plugin-postcss 默认集成了对 scss、less、stylus 的支持。
 
 #### 5.1 打包支持 sass 文件
 
+新增 `src/foo.scss`：
+
+```scss
+body {
+  background-color: red;
+  display: flex;
+}
+```
+
+更新 `src/main.js`：
+
+```js
+// src/main.js
+import foo from "./foo.js";
+import './foo.scss'
+
+export default function () {
+    console.log(foo.text);
+}
+```
+
 安装：
 
 ```chain
@@ -355,6 +376,10 @@ function main() {
 
 module.exports = main;
 ```
+
+效果如图：
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9d5d5e80b5d54910abe0836b8ca0144a~tplv-k3u1fbpfcp-watermark.image?)
 
 #### 5.2 css加前缀
 
@@ -444,9 +469,35 @@ export default {
 
 ```
 
+### 6. 引入 Typescript 资源
+
+修改 `src/foo.js` -> `src/foo.ts`。
+
+
+
 效果如图：
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/84ac8ce365664db1a49a8d81f0256b4e~tplv-k3u1fbpfcp-watermark.image?)
+
+#### 5.4 抽离单独的css文件
+
+更新 `rollup.config.js`：
+
+```js
+postcss({
+  plugins: [
+    autoprefixer(),
+    cssnano()
+  ],
+  extract: 'css/index.css'  
+})
+```
+
+效果如图：
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/31aa7bcbac6e4a2a8a1576c1b35e90b3~tplv-k3u1fbpfcp-watermark.image?)
+
+
+
 ## 参考资料
 
 - [Rollup 官网](https://www.rollupjs.com/)
