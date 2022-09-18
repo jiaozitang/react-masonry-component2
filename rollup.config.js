@@ -3,6 +3,7 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import postcss from "rollup-plugin-postcss";
+import typescript from "@rollup/plugin-typescript";
 
 export default {
   input: "src/main.js",
@@ -18,6 +19,7 @@ export default {
       plugins: [autoprefixer(), cssnano()],
       extract: "css/index.css",
     }),
+    typescript()
   ],
   external: ["react"],
 };

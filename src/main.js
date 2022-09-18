@@ -1,5 +1,5 @@
 // src/main.js
-import foo from "./foo.js";
+import foo from "./foo.ts";
 import './foo.scss'
 
 export default function () {

@@ -278,7 +278,6 @@ module.exports = {
 
 rollup-plugin-postcss 默认集成了对 scss、less、stylus 的支持。
 
-
 #### 5.1 打包支持 sass 文件
 
 新增 `src/foo.scss`：
@@ -295,10 +294,10 @@ body {
 ```js
 // src/main.js
 import foo from "./foo.js";
-import './foo.scss'
+import "./foo.scss";
 
 export default function () {
-    console.log(foo.text);
+  console.log(foo.text);
 }
 ```
 
@@ -381,7 +380,7 @@ module.exports = main;
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9d5d5e80b5d54910abe0836b8ca0144a~tplv-k3u1fbpfcp-watermark.image?)
 
-#### 5.2 css加前缀
+#### 5.2 css 加前缀
 
 安装：
 
@@ -401,7 +400,7 @@ yarn add autoprefixer -D
     "iOS 7",
     "last 3 iOS versions"
   ]
-  ```
+```
 
 更新 rollup.config.js：
 
@@ -433,7 +432,7 @@ export default {
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bdb1b417634e4b7cacb27d824ebebf00~tplv-k3u1fbpfcp-watermark.image?)
 
-#### 5.3 css压缩
+#### 5.3 css 压缩
 
 安装：
 
@@ -466,35 +465,72 @@ export default {
   ],
   external: ["react"],
 };
-
 ```
-
-### 6. 引入 Typescript 资源
-
-修改 `src/foo.js` -> `src/foo.ts`。
-
-
 
 效果如图：
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/84ac8ce365664db1a49a8d81f0256b4e~tplv-k3u1fbpfcp-watermark.image?)
 
-#### 5.4 抽离单独的css文件
+#### 5.4 抽离单独的 css 文件
 
 更新 `rollup.config.js`：
 
 ```js
 postcss({
-  plugins: [
-    autoprefixer(),
-    cssnano()
-  ],
-  extract: 'css/index.css'  
-})
+  plugins: [autoprefixer(), cssnano()],
+  extract: "css/index.css",
+});
 ```
 
 效果如图：
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/31aa7bcbac6e4a2a8a1576c1b35e90b3~tplv-k3u1fbpfcp-watermark.image?)
+
+### 6. 引入 Typescript 资源
+
+#### 6.1 typescript 插件
+
+修改 `src/foo.js` -> `src/foo.ts`：
+
+```ts
+export default  {
+  text: "hello world!",
+};
+```
+
+更新 `src/main.js`：
+
+```js
+// src/main.js
+import foo from "./foo.ts";
+import "./foo.scss";
+
+export default function () {
+  console.log(foo.text);
+}
+```
+
+安装：
+
+```chain
+yarn add @rollup/plugin-typescript -D
+```
+
+更新 rollup.config.js：
+
+```js
+import typescript from "@rollup/plugin-typescript";
+{
+  plugins: [
+      typescript()
+  ]
+}
+```
+
+成功支持 Ts 文件导出：
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ecdd7a565cac48c7a70d7cec2b2f8678~tplv-k3u1fbpfcp-watermark.image?)
+
+#### 6.2 导出类型声明文件
 
 
 
