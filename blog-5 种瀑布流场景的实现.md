@@ -14,7 +14,7 @@
 - 横向+高度排序
 - 横向+高度排序+根据宽度自适应列数
 
-我已经将这 6 种场景的实现封装成 npm 包，npm 包地址：<https://www.npmjs.com/package/react-masonry-component2>，可以直接在 React 项目中安装使用。
+我已经将这 5 种场景的实现封装成 npm 包，npm 包地址：<https://www.npmjs.com/package/react-masonry-component2>，可以直接在 React 项目中安装使用。
 
 ## 介绍
 
@@ -86,7 +86,13 @@ export const MyComponent = (args) => {
 };
 ```
 
+在线预览：<https://632339a3ed0b247d36b0fa3c-njrsmzdcdj.chromatic.com/?path=/story/%E5%B8%83%E5%B1%80-masonry-%E7%80%91%E5%B8%83%E6%B5%81--%E7%BA%B5%E5%90%91%E5%B8%83%E5%B1%80>
+
 ## 纵向+高度排序+根据宽度自适应列数
+
+在纵向+高度排序的基础上，按照宽度自适应列数。
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb268b95e34f4c5d8672ee4d2e4573d8~tplv-k3u1fbpfcp-watermark.image?)
 
 ### 1. 实现思路
 
@@ -190,9 +196,13 @@ export const MyComponent = (args) => {
 };
 ```
 
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb268b95e34f4c5d8672ee4d2e4573d8~tplv-k3u1fbpfcp-watermark.image?)
+在线预览：<https://632339a3ed0b247d36b0fa3c-njrsmzdcdj.chromatic.com/?path=/story/%E5%B8%83%E5%B1%80-masonry-%E7%80%91%E5%B8%83%E6%B5%81--%E7%BA%B5%E5%90%91%E5%B8%83%E5%B1%80>
 
 ## 横向
+
+横向瀑布流指的是，每列按照横向排列，如下图所示。
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/74c452c957b342c0b8dbb966d3fc7846~tplv-k3u1fbpfcp-watermark.image?)
 
 实现横向瀑布流的方法是**CSS 弹性布局**。
 
@@ -288,9 +298,13 @@ export const MyComponent = (args) => {
 };
 ```
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/74c452c957b342c0b8dbb966d3fc7846~tplv-k3u1fbpfcp-watermark.image?)
+在线预览：<https://632339a3ed0b247d36b0fa3c-njrsmzdcdj.chromatic.com/?path=/story/%E5%B8%83%E5%B1%80-masonry-%E7%80%91%E5%B8%83%E6%B5%81--%E6%A8%AA%E5%90%91%E5%B8%83%E5%B1%80>
 
 ## 横向+高度排序
+
+横向+高度排序指的是，每列按照横向排列，往高度最小的列添加内容，如下图所示。
+
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/17f765ac5082442299f1617b0cb7d963~tplv-k3u1fbpfcp-watermark.image?)
 
 高度排序就需要用 JS 逻辑来做了。
 
@@ -365,7 +379,7 @@ export const MyComponent = (args) => {
 };
 ```
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/17f765ac5082442299f1617b0cb7d963~tplv-k3u1fbpfcp-watermark.image?)
+在线预览：<https://632339a3ed0b247d36b0fa3c-njrsmzdcdj.chromatic.com/?path=/story/%E5%B8%83%E5%B1%80-masonry-%E7%80%91%E5%B8%83%E6%B5%81--%E6%A8%AA%E5%90%91%E5%B8%83%E5%B1%80%E9%AB%98%E5%BA%A6%E6%8E%92%E5%BA%8F>
 
 ## 横向+高度排序+根据宽度自适应列数
 
@@ -399,6 +413,8 @@ export const MyComponent = (args) => {
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c9e8f7a49e38457fa43f72cfe214eb50~tplv-k3u1fbpfcp-watermark.image?)
 
+在线预览：<https://632339a3ed0b247d36b0fa3c-njrsmzdcdj.chromatic.com/?path=/story/%E5%B8%83%E5%B1%80-masonry-%E7%80%91%E5%B8%83%E6%B5%81--%E6%A8%AA%E5%90%91%E5%B8%83%E5%B1%80%E9%AB%98%E5%BA%A6%E6%8E%92%E5%BA%8F>
+
 ## 小结
 
 本文介绍了 5 种瀑布流场景的实现：
@@ -416,3 +432,5 @@ export const MyComponent = (args) => {
 希望能对你有所帮助，感谢阅读～
 
 别忘了点个赞鼓励一下我哦，笔芯 ❤️
+
+---
