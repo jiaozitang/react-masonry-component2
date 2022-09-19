@@ -1,2 +1,2 @@
-export { default as foo } from './index.js';
-export { default as hello } from './index2.js';
+export { default as foo } from './foo/index.js';
+export { default as hello } from './hello/index.js';
