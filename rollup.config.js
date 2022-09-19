@@ -26,7 +26,11 @@ export default [
       }),
       resolve(),
       commonjs(),
-      typescript(),
+      typescript({
+        "outDir": "es",
+        "declaration": true,
+        "declarationDir": "es"
+      }),
       postcss({
         plugins: [
           autoprefixer()
