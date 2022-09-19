@@ -3,7 +3,6 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import autoprefixer from 'autoprefixer'
 import path from 'path'
-import externals from 'rollup-plugin-node-externals'
 import postcss from "rollup-plugin-postcss";
 
 import {walkEntryFiles} from './scripts/buildUtil'
@@ -18,11 +17,6 @@ export default {
     preserveModulesRoot: 'src', // 将保留的模块放在根级别的此路径下
   },
   plugins: [
-    externals({
-      devDeps: false,
-      include: [/^rc-/],
-      exclude: [/\.less$/],
-    }),
     nodeResolve(),
     commonjs(),
     typescript({
@@ -33,5 +27,4 @@ export default {
       plugins: [autoprefixer()]
     }),
   ],
-  external: ["react"],
 };
