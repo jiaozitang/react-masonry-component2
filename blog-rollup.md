@@ -763,6 +763,10 @@ export default [
 
 别忘了点个赞鼓励一下我哦，笔芯 ❤️
 
+## 往期精彩
+
+- [从0到1开发一个React组件库](https://juejin.cn/post/7144365208646418462)
+
 ## 参考资料
 
 - [Rollup 官网](https://www.rollupjs.com/)
