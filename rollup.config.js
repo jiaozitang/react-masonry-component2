@@ -1,53 +1,35 @@
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from '@rollup/plugin-node-resolve'
 import strip from "@rollup/plugin-strip";
 import typescript from "@rollup/plugin-typescript";
-import sass from 'node-sass';
+import autoprefixer from 'autoprefixer'
 import path from 'path'
+import externals from 'rollup-plugin-node-externals'
 import postcss from 'rollup-plugin-postcss'
 
-import postcssUrl from 'postcss-url'
 import pkg from "./package.json";
 
-
-function getOutputConfig({dir = 'lib/index.js', format = 'cjs'}) {
-  return {
-    dir,
-    format,
-    exports: 'named',
-    name: pkg.name,
-    preserveModules: true,
-    preserveModulesRoot: 'src',
-  }
-}
-
 export default [
-  // CommonJS (for Node) and ES module (for bundlers) build.
-  // (We could have three entries in the configuration array
-  // instead of two, but it's quicker to generate multiple
-  // builds from a single configuration where possible, using
-  // an array for the `output` option, where we can specify
-  // `file` and `format` for each target)
   {
     input: './src/index.ts',
-    external: ["ms"],
-    output: [getOutputConfig({dir: path.dirname(pkg.module), format: "es"})],
+    output: [{
+      dir: path.dirname(pkg.module), 
+      format: "es",
+      name: pkg.name,
+      exports: 'named', // 指定导出模式（自动、默认、命名、无）
+      preserveModules: true, // 保留模块结构
+      preserveModulesRoot: 'src', // 将保留的模块放在根级别的此路径下
+    }],
     plugins: [
+      externals({
+        devDeps: false,
+      }),
+      resolve(),
+      commonjs(),
       typescript(),
       postcss({
-        modules: false,
-        use: [
-          'sass',
-          'stylus',
-          [
-            'less',
-            {
-              javascriptEnabled: true,
-            },
-          ],
-        ],
         plugins: [
-          postcssUrl({
-            url: 'inline',
-          }),
+          autoprefixer()
         ],
       }),
       strip(),
