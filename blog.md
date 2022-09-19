@@ -375,12 +375,16 @@ Webpack 对于代码分割和静态资源导入有着“先天优势”，并且
 
 因此组件库打包工具选择 rollup。
 
+更详细的 rollup 使用教程见我的另一篇博客：[【实战篇】最详细的 Rollup 打包项目教程](https://juejin.cn/post/7145090564801691684)。
+
 ### 2. 快速开始
 
 #### 2.1 安装
 
 ```chain
-yarn add rollup @rollup/plugin-strip @rollup/plugin-typescript rollup-plugin-postcss postcss-url -D
+npm i rollup -g
+
+yarn add @rollup/plugin-commonjs @rollup/plugin-node-resolve @rollup/plugin-strip @rollup/plugin-typescript rollup-plugin-postcss rollup-plugin-node-externals autoprefixer -D
 ```
 
 #### 2.2 打包配置
@@ -388,54 +392,51 @@ yarn add rollup @rollup/plugin-strip @rollup/plugin-typescript rollup-plugin-pos
 项目根目录下新增配置文件 `rollup.config.js`：
 
 ```js
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
 import strip from "@rollup/plugin-strip";
 import typescript from "@rollup/plugin-typescript";
+import autoprefixer from "autoprefixer";
 import path from "path";
+import externals from "rollup-plugin-node-externals";
 import postcss from "rollup-plugin-postcss";
 
-import postcssUrl from "postcss-url";
 import pkg from "./package.json";
-
-function getOutputConfig({ dir = "lib/index.js", format = "cjs" }) {
-  return {
-    dir,
-    format,
-    exports: "named",
-    name: pkg.name,
-    preserveModules: true,
-    preserveModulesRoot: "src",
-  };
-}
 
 export default [
   {
-    input: "./src/index.ts",
-    external: ["ms"],
-    output: [getOutputConfig({ dir: path.dirname(pkg.module), format: "es" })],
+    input: "./src/index.ts", // 入口文件
+    output: [
+      {
+        // 出口文件
+        dir: path.dirname(pkg.module),
+        format: "es", // es模块导出，支持按需加载
+        name: pkg.name,
+        exports: "named", // 指定导出模式（自动、默认、命名、无）
+        preserveModules: true, // 保留模块结构
+        preserveModulesRoot: "src", // 将保留的模块放在根级别的此路径下
+      },
+    ],
     plugins: [
+      // 自动将dependencies依赖声明为 externals
+      externals({
+        devDeps: false,
+      }),
+      // 处理外部依赖
+      resolve(),
+      // 支持基于 CommonJS 模块引入
+      commonjs(),
+      // 支持 typescript，并导出声明文件
       typescript({
         outDir: "es",
         declaration: true,
         declarationDir: "es",
       }),
+      // 支持 scss，并添加前缀
       postcss({
-        modules: false,
-        use: [
-          "sass",
-          "stylus",
-          [
-            "less",
-            {
-              javascriptEnabled: true,
-            },
-          ],
-        ],
-        plugins: [
-          postcssUrl({
-            url: "inline",
-          }),
-        ],
+        plugins: [autoprefixer()],
       }),
+      // 清除调试代码
       strip(),
     ],
   },
@@ -606,6 +607,10 @@ link 的本质就是软链接，这样可以让我们快速使用本地正在开
 
 - 本文项目源码：<https://github.com/jiaozitang/react-masonry-component2>
 - 本文组件库 npm 包地址：<https://www.npmjs.com/package/react-masonry-component2>
+
+## 往期精彩
+
+- [【实战篇】最详细的 Rollup 打包项目教程](https://juejin.cn/post/7145090564801691684)。
 
 ## 参考资料
 
