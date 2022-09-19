@@ -20,6 +20,7 @@ export default {
     nodeResolve(),
     commonjs(),
     typescript({
+      outDir: 'dist',
       declaration: true,
       declarationDir: 'dist'
     }),
