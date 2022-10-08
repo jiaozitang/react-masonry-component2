@@ -38,7 +38,6 @@ const MasonryAbsolute: React.FC<
       ref={ref}
     >
       {list.map((i, index) => {
-        console.log(i);
         return (
           <div className={"masonry-absolute-item"} key={index} style={i.style}>
             {i.node}

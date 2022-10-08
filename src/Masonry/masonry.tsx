@@ -7,17 +7,20 @@ import MasonryColumn from "./masonry-column";
 import MasonryFlex from "./masonry-flex";
 
 export interface MasonryProps extends React.HTMLAttributes<HTMLElement> {
-  /** 排列方向 */
+  /* 排列方向 */
   direction?: "row" | "column";
-  sortWithHeight?: boolean; // 是否需要按高度排序
-  useAbsolute?: boolean; // 是否开启绝对定位方法实现瀑布流，该模式默认开始按高度排序
+  /* 是否需要按高度排序 */
+  sortWithHeight?: boolean;
+  /* 是否开启绝对定位方法实现瀑布流，该模式默认开始按高度排序 */
+  useAbsolute?: boolean;
+  /* 自适应的配置 */
   columnsCountBreakPoints?: {
-    // 自适应的配置
     [props: number]: number;
   };
   children?: React.ReactNode;
   className?: string;
   style?: Record<string, any>;
+  /* 间距 */
   gutter?: number;
 }
 

@@ -1,0 +1,84 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import MasonryScroll from "./";
+import MockData from "./mock.json";
+
+<Meta title="布局/MasonryScroll 滚动瀑布流" component={MasonryScroll} />
+
+export const Basic = (args) => <MasonryScroll {...args} />;
+
+## 基本使用
+
+滚动到底部自动加载
+
+```tsx
+import MasonryScroll from "react-masonry-component2";
+export const MyComponent = (args) => {
+  return (
+    <MasonryScroll
+      autoFetch
+      fetchApi={() =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(MockData.list);
+          }, 500);
+        })
+      }
+    ></MasonryScroll>
+  );
+};
+```
+
+<Canvas>
+  <Story name="基本使用">
+    <Basic
+      autoFetch
+      fetchApi={() =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(MockData.list);
+          }, 500);
+        })
+      }
+    ></Basic>
+  </Story>
+</Canvas>
+
+## 预加载
+
+提前加载下一页
+
+```tsx
+import MasonryScroll from "react-masonry-component2";
+export const MyComponent = (args) => {
+  return (
+    <MasonryScroll
+      autoFetch
+      preload
+      fetchApi={() =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(MockData.list);
+          }, 500);
+        })
+      }
+    ></MasonryScroll>
+  );
+};
+```
+
+<Canvas>
+  <Story name="预加载">
+    <Basic
+      autoFetch
+      preload
+      pageSize={9}
+      fetchApi={() =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(MockData.list);
+          }, 500);
+        })
+      }
+    ></Basic>
+  </Story>
+</Canvas>
