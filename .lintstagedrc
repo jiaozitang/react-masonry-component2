@@ -11,5 +11,8 @@
   ],
  "src/**/*.md": [
     "prettier --write"
-  ]
+  ],
+  "blog/**/*.md": [
+     "prettier --write"
+   ]
 }

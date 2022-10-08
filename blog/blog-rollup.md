@@ -765,7 +765,7 @@ export default [
 
 ## 往期精彩
 
-- [从0到1开发一个React组件库](https://juejin.cn/post/7144365208646418462)
+- [从 0 到 1 开发一个 React 组件库](https://juejin.cn/post/7144365208646418462)
 
 ## 参考资料
 
