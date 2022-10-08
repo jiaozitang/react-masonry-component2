@@ -135,3 +135,42 @@ export const MyComponent = (args) => {
 ```
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cca86944185842fba3f976332e481d13~tplv-k3u1fbpfcp-watermark.image?)
+
+## 支持滚动自动加载更多的瀑布流
+
+```tsx
+import MasonryScroll from "react-masonry-component2";
+export const MyComponent = (args) => {
+  return (
+    <MasonryScroll
+      preload={false}
+      fetchApi={() =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(MockData.list);
+          }, 500);
+        })
+      }
+    ></MasonryScroll>
+  );
+};
+```
+
+## 支持预加载的瀑布流
+
+```tsx
+import MasonryScroll from "react-masonry-component2";
+export const MyComponent = (args) => {
+  return (
+    <MasonryScroll
+      fetchApi={() =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(MockData.list);
+          }, 500);
+        })
+      }
+    ></MasonryScroll>
+  );
+};
+```

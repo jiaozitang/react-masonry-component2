@@ -37,7 +37,8 @@
     "prepare": "husky install",
     "eslint": "eslint src --fix",
     "prettier": "prettier src --write",
-    "publish": "yarn build && npm publish"
+    "publish": "yarn build && npm publish",
+    "chromatic": "npx chromatic --project-token=10adf2ba5cae"
   },
   "eslintConfig": {
     "extends": [
@@ -127,5 +128,5 @@
     "url": "https://github.com/jiaozitang/react-masonry-component2/issues"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "react-masonry-component2@1.0.2"
+  "_id": "react-masonry-component2@1.0.3"
 }
