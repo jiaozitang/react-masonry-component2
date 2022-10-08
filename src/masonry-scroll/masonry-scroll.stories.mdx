@@ -15,7 +15,7 @@ import MasonryScroll from "react-masonry-component2";
 export const MyComponent = (args) => {
   return (
     <MasonryScroll
-      autoFetch
+      preload={false}
       fetchApi={() =>
         new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -31,7 +31,7 @@ export const MyComponent = (args) => {
 <Canvas>
   <Story name="基本使用">
     <Basic
-      autoFetch
+      preload={false}
       fetchApi={() =>
         new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -52,8 +52,6 @@ import MasonryScroll from "react-masonry-component2";
 export const MyComponent = (args) => {
   return (
     <MasonryScroll
-      autoFetch
-      preload
       fetchApi={() =>
         new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -69,9 +67,6 @@ export const MyComponent = (args) => {
 <Canvas>
   <Story name="预加载">
     <Basic
-      autoFetch
-      preload
-      pageSize={9}
       fetchApi={() =>
         new Promise((resolve, reject) => {
           setTimeout(() => {

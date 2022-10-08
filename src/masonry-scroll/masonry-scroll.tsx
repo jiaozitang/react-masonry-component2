@@ -18,9 +18,9 @@ export interface MasonryScrollProps extends React.HTMLAttributes<HTMLElement> {
   /* 每页大小 */
   pageSize?: number;
   /* 是否需要预加载 */
-  autoFetch?: boolean;
-  /* 是否需要预加载 */
   preload?: boolean;
+  /* 检测可见范围的边距 */
+  observerMargin?: number;
   /* 加载中 */
   loadingComponent?: React.ReactNode;
   /* 瀑布流子项 */
@@ -32,13 +32,10 @@ export interface MasonryScrollProps extends React.HTMLAttributes<HTMLElement> {
 const defaultPageSize = 20;
 
 const MasonryScroll: React.FC<MasonryScrollProps> = (props) => {
-  const { ref, inView, entry } = useInView({
-    /* Optional options */
-    threshold: 0,
-  });
   const {
     fetchApi,
-    preload,
+    preload = true,
+    observerMargin = 600,
     mansonryProps,
     pageSize = defaultPageSize,
     className,
@@ -54,6 +51,13 @@ const MasonryScroll: React.FC<MasonryScrollProps> = (props) => {
       );
     },
   } = props;
+
+  const { ref, inView } = useInView({
+    /* Optional options */
+    threshold: 0,
+    rootMargin: preload ? `0px 0px ${observerMargin}px 0px` : "",
+  });
+
   const [list, setList] = useState<
     {
       img: string;
@@ -61,6 +65,7 @@ const MasonryScroll: React.FC<MasonryScrollProps> = (props) => {
       [props: string]: string | number;
     }[]
   >([]);
+
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
